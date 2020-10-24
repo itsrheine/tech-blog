@@ -6,32 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Blog</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <h1>
-                <a href="/">Tech Blog</a>
-            </h1>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/dashboard">Dashboard</a>
-                {{#if loggedIn}}
-                <button id="logout" class="btn-no-style">Logout</button>
-                {{else}}
-                <a href="/login">Login</a>
-                {{/if}}
-            </nav>
-        </header>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <a class="navbar-brand text-white" href="/"><strong>Tech Blog</strong></a>
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/signup">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    {{#if loggedIn}}
+                    <a class="nav-link text-white" href="/logout">Logout</a>
+                    {{else}}
+                    <a class="nav-link text-white" href="/login">Login</a>
+                    {{/if}}
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        <main>
-            {{{ body }}}
-        </main>
+    <div class="hero bg-light">
+        <h1 class="display-4 text-center">Write it out loud!</h1>
+        <p class="lead text-center">Share your ideas and explore new ideas through blogging.</p>
+    </div>
 
-        <footer>
-            Thanks for visiting!
-        </footer>
+    <main>
+        {{{ body }}}
+    </main>
+
+    <footer>
+        Thanks for visiting!
+    </footer>
     </div>
     {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
