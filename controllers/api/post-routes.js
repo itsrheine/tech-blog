@@ -16,11 +16,12 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/:id', withAuth, (req, res) => {
-    {
+    Post.update(req.body,
+        {
         where: {
             id: req.params.id
         }
-    }
+    })
     .then(dbPostData => {
         if (!dbPostData) {
             res.status(404).json({ message: 'No post found with this id' });
@@ -31,7 +32,7 @@ router.put('/:id', withAuth, (req, res) => {
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
-    });
+    })
 });
 
 router.delete('/:id', withAuth, (req, res) => {
