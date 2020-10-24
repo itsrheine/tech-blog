@@ -14,6 +14,25 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    User.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbUserData => {
+        if (!dbUserData) {
+          res.status(404).json({ message: 'No user found with this id' });
+          return;
+        }
+        res.json(dbUserData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
@@ -39,15 +58,16 @@ router.post('/login', (req, res) => {
         where: {
             username: req.body.username
         }
-    }).then(dbUserData => {
+    })
+    .then(dbUserData => {
         if (!dbUserData) {
-            res.status(400).json({ message: 'No user account found!' });
+            res.status(400).json({ message: 'Invalid username!' });
             return;
         }
 
         const validPassword = dbUserData.checkPassword(req.body.password);
         if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' });
+            res.status(400).json({ message: 'Incorrect password!'});
             return;
         }
 
@@ -56,7 +76,7 @@ router.post('/login', (req, res) => {
             req.session.username = dbUserData.username;
             req.session.loggedIn = true;
 
-            res.json({ user: dbUserData, message: 'You are now logged in!' });
+            res.json({ user: dbUserData, message: 'You are now logged in! '});
         });
     });
 });
@@ -80,7 +100,7 @@ router.delete('/:id', (req, res) => {
     })
         .then(dbUserData => {
             if (!dbUserData) {
-                res.status(404).json({ message: 'No user found with this id' });
+                res.status(404).json({ message: 'No user found with this username' });
                 return;
             }
             res.json(dbUserData);
