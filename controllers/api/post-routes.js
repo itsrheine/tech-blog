@@ -38,7 +38,15 @@ router.post('/', withAuth, (req, res) => {
         content: req.body.content,
         user_id: req.session.user_id
     })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dbPostData => {
+        req.session.save(() => {
+            req.session.user_id = dbPostData.id;
+            req.session.title = dbPostData.title;
+            req.session.createNew = true;
+
+            res.json(dbPostData);
+        });
+    })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);

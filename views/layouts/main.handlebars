@@ -15,11 +15,15 @@
             <a class="navbar-brand text-white" href="/"><strong>Tech Blog</strong></a>
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item">
+                    {{#if loggedIn}}
+                    <a class="nav-link text-white" href="/dashboard">Dashboard</a>
+                    {{else}}
                     <a class="nav-link text-white" href="/signup">Sign Up</a>
+                    {{/if}}
                 </li>
                 <li class="nav-item">
                     {{#if loggedIn}}
-                    <a class="nav-link text-white" href="/logout">Logout</a>
+                    <a class="nav-link text-white" href="#" id="logout">Logout</a>
                     {{else}}
                     <a class="nav-link text-white" href="/login">Login</a>
                     {{/if}}
@@ -29,8 +33,14 @@
     </header>
 
     <div class="hero bg-light">
+        {{#if loggedIn}}
+        <h1 class="lead text-center d-flex justify-content-center">"I'm writing a first draft and reminding myself that I'm simply shoveling sand into a box so that later I can build castles."</h1>
+        <p class="lead d-flex justify-content-around">-Shannon Hale</p>
+        {{else}}
         <h1 class="display-4 text-center">Write it out loud!</h1>
         <p class="lead text-center">Share your ideas and explore new ideas through blogging.</p>
+        <p class="lead text-center">Sign up today!</p>
+        {{/if}}
     </div>
 
     <main>
@@ -42,7 +52,7 @@
     </footer>
     </div>
     {{#if loggedIn}}
-    <script src="../public/javascript/logout.js"></script>
+    <script src="javascript/logout.js"></script>
     {{/if}}
 </body>
 

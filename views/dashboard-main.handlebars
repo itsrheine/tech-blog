@@ -1,0 +1,11 @@
+<article class="posts list-group">
+    {{#each posts}}
+    <div class="list-group-item d-flex justify-content-between align-items-center bg-dark">
+        <a href="/post/{{id}}" class="lead text-white" target="_blank">{{title}}</a>
+        <span class="post-meta text-white">Created at {{format_date created_at}}</span>
+    </div>
+    <div class="list-group-item d-flex justify-content-between align-items-center">
+        {{content}}
+    </div>
+    {{/each}}
+</article>
