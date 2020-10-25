@@ -10,7 +10,7 @@ router.get('/', withAuth, (req, res) => {
             'content',
             'created_at'
         ],
-        inclide: [
+        include: [
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'user_id', 'post_id', 'created_at'],
