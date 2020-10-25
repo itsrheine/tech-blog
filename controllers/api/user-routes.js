@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/post/:id', (req, res) => {
     User.findOne({
         where: {
             id: req.params.id
@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/post/', (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -62,6 +62,7 @@ router.post('/login', (req, res) => {
     .then(dbUserData => {
         if (!dbUserData) {
             res.status(400).json({ message: 'Invalid username!' });
+            
             return;
         }
 

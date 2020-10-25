@@ -7,14 +7,13 @@
                     <form action="" id="edit-post-form" class="edit-post-form justify-content-center">
                         <div class="form-group">
                             <label class="sr-only">Title</label>
-                            <input type="text" name="post-title" id="post-title" class="form-control" value="{{post.title}}">
+                            <input type="text" name="post-title" id="post-title" class="form-control" value="{{post.title}}"/>
                         </div>
                         <div class="input-group">
                             <label class="sr-only">Content</label>
-                            <textarea type="post-content" id="post-content" class="form-input" placeholder="Content">{{post.content}}</textarea>
+                            <textarea type="post-content" id="post-content" class="form-control" placeholder="Content">{{post.content}}</textarea>
                         </div><br>
                         <button type="submit" class="btn btn-primary btn-lg">Update</button>
-                        <button type="submit" class="btn btn-primary btn-lg">Delete</button>
                     </form>
                 </div>
             </div>
@@ -22,4 +21,4 @@
     </div>
 </section>
 
-<script src="javascript/edit-post.js"></script>
+<script src="/javascript/edit-post.js"></script>
