@@ -26,8 +26,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine('.hbs', exphbs({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    partialsDir: path.join(__dirname, 'views/partials'),
+    layoutsDir: path.join(__dirname, 'views/layouts')
+  }));
+app.set('view engine', '.hbs');
+app.set('views',path.join(__dirname,'views'))
 
 // turn on routes
 app.use(routes);

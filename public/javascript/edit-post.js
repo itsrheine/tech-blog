@@ -6,23 +6,23 @@ async function editFormHandler(event) {
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
-
+    
     const response = await fetch(`/api/posts/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
-            title,
-            content
+          title,
+          content
         }),
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard/edit/');
+        document.location.replace('/dashboard/');
     } else {
         alert(response.statusText);
     }
 }
-
+  
 document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
