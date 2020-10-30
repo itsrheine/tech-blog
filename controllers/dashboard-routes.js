@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
     })
     .then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('dashboard', { posts, loggedIn: false });
+        res.render('dashboard', { posts, loggedIn: true });
     })
     .catch(err => {
         console.log(err);
@@ -39,8 +39,8 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/new', withAuth, (req, res) => {
-    res.render('new-post', { layout: "main" });
+router.get('/add', withAuth, (req, res) => {
+    res.render('add-post', { layout: "main" });
 })
 
 router.get('/post/:id', withAuth, (req, res) => {
