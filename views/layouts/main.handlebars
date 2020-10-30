@@ -5,24 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Blog</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-dark">
-            {{#if loggedIn}}
-            <a class="navbar-brand text-white" href="/"><strong>My Dashboard</strong></a>
-            {{else}}
             <a class="navbar-brand text-white" href="/"><strong>Tech Blog</strong></a>
-            {{/if}}
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item">
-                    {{#if loggedIn}}
-                    {{else}}
                     <a class="nav-link text-white" href="/signup">Sign Up</a>
-                    {{/if}}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/login">Login</a>
