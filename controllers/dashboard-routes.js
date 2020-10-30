@@ -39,49 +39,60 @@ router.get('/', (req, res) => {
     });
 });
 
-// router.get('/new', withAuth, (req, res) => {
-//     res.render('new-post', { layout: "main" });
-// })
+router.get('/new', withAuth, (req, res) => {
+    res.render('new-post', { layout: "main" });
+})
 
-// router.get('/edit/:id', withAuth, (req, res) => {
-//     Post.findOne({
-//         where: {
-//             id: req.params.id
-//         },
-//         attributes: [
-//             'id',
-//             'title',
-//             'content',
-//             'created_at'
-//         ],
-//         include: [
-//             {
-//                 model: Comment,
-//                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-//                 include: {
-//                     model: User,
-//                     attributes: ['username']
-//                 }
-//             },
-//             {
-//                 model: User,
-//                 attributes: ['username']
-//             }
-//         ]
-//     })
-//     .then(dbPostData => {
-//         if (dbPostData) {
-//             const post = dbPostData.get({ plain: true });
+router.get('/post/:id', withAuth, (req, res) => {
+    Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'title',
+            'content',
+            'created_at'
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
+    })
+    .then(dbPostData => {
+        if (dbPostData) {
+            const post = dbPostData.get({ plain: true });
 
-//             res.render('edit-post', { layout: "main", post, loggedIn: true });
-//         } else {
-//             res.status(404).json({ message: 'No post found with this id'});
-//             return;
-//         }
-//     })
-//     .catch(err => {
-//         res.status(500).json(err);
-//     });
-// })
+            res.render('single-post', { layout: "main", post, loggedIn: true });
+        } else {
+            res.status(404).json({ message: 'No post found with this id'});
+            return;
+        }
+    })
+    .catch(err => {
+        res.status(500).json(err);
+    });
+})
+
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(404).end();
+    }
+});
 
 module.exports = router;
