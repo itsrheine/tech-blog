@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
     })
     .then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
-        res.render('dashboard', { posts, loggedIn: true });
+        res.render('posts', { posts, loggedIn: true });
     })
     .catch(err => {
         console.log(err);
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/add', withAuth, (req, res) => {
-    res.render('add-post', { layout: "main" });
+    res.render('add-post', { layout: "dashboard" });
 })
 
 router.get('/post/:id', withAuth, (req, res) => {
@@ -73,7 +73,7 @@ router.get('/post/:id', withAuth, (req, res) => {
         if (dbPostData) {
             const post = dbPostData.get({ plain: true });
 
-            res.render('single-post', { layout: "main", post, loggedIn: true });
+            res.render('single-post', { layout: "dashboard", post, loggedIn: true });
         } else {
             res.status(404).json({ message: 'No post found with this id'});
             return;

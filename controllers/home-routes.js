@@ -27,10 +27,7 @@ router.get('/', (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('dashboard', {
-                posts,
-                loggedIn: req.session.loggedIn
-            });
+            res.render('posts', { layout: "dashboard", posts, loggedIn: true });
         })
         .catch(err => {
             console.log(err);
@@ -72,7 +69,7 @@ router.get('/post/:id', (req, res) => {
 
             const post = dbPostData.get({ plain: true });
 
-            res.render('single-post', { layout: "main", post, loggedIn: true });
+            res.render('single-post', { layout: "dashboard", post, loggedIn: true });
         })
         .catch(err => {
             console.log(err);
@@ -83,7 +80,7 @@ router.get('/post/:id', (req, res) => {
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
-        res.redirect('/dashboard');
+        res.redirect('/');
         return;
     }
 
