@@ -2,9 +2,9 @@
     {{#each this}}
     <section class="comment">
         <div class="meta">
-            {{user.username}} on {{created_at}}
+            <a class="lead text-white">{{user.username}} on {{format_date created_at}}</a>
         </div>
-        <div class="text">
+        <div class="text list-group-item d-flex justify-content-between align-items-center">
             {{comment_text}}
         </div>
     </section>
