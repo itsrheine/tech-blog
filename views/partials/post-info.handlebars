@@ -1,7 +1,9 @@
 <article class="list-group">
     <div class="list-group-item d-flex justify-content-between align-items-center bg-dark">
-        <a class="lead text-white">{{title}}</a> 
+        <a class="lead text-white">{{title}}</a>
+        {{#if loggedIn}}
         <a href="/dashboard/edit/{{id}}" class="lead text-white">Edit Post</a>
+        {{/if}}
         <span class="post-meta text-white">Posted by {{user.username}} on {{format_date created_at}}</span>
     </div>
     <div class="list-group-item d-flex justify-content-between align-items-center">
