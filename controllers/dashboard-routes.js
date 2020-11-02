@@ -40,7 +40,7 @@ router.get('/', withAuth, (req, res) => {
 });
 
 router.get('/new', withAuth, (req, res) => {
-    res.render('new-post', { layout: "main" });
+    res.render('new-post', { layout: "secondary" });
 })
 
 router.get('/post/:id', withAuth, (req, res) => {
