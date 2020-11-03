@@ -2,8 +2,9 @@
 
 # License
   
-[![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
-[![License: Artistic-2.0](https://img.shields.io/badge/License-Artistic%202.0-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
+![License: ](https://img.shields.io/badge/javascript-67.7-0298c3.svg)
+![License: ](https://img.shields.io/badge/handlebars-32.3-0298c3.svg)
+![License: ](https://img.shields.io/badge/License:-MIT-0298c3.svg)  
 
 # Table of Contents
 
